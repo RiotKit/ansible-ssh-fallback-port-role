@@ -1,6 +1,6 @@
-- name: "Check port {{ ansible_port }}"
+- name: "Check port {{ ansible_ssh_port }}"
   wait_for:
-      port: "{{ ansible_port }}"
+      port: "{{ ansible_ssh_port }}"
       state: "started"
       host: "{{ inventory_hostname }}"
       connect_timeout: "5"
@@ -25,5 +25,5 @@
 
 - name: Set SSH port to the defined fallback
   set_fact:
-      ansible_port: "{{ fallback_ssh_port }}"
+      ansible_ssh_port: "{{ fallback_ssh_port }}"
   when: ssh_port_default.state is defined
